@@ -1,0 +1,8 @@
+Fraction of interactions detected from:
+* Monthly data, univariate, no cross-map lag
+* Seasonal (eps=0.1)
+* Different (beta00=0.30, beta01=0.25)
+
+Source data:
+* 2015-11-23-everything/1000y-monthly/univariate-tausearch/results_gathered.sqlite
+
