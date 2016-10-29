@@ -22,6 +22,9 @@ library(tools)
 
 ### EXTERNAL SOURCE ###
 
+source('../../file_output.R')
+
+
 main <- function()
 {
     root_dir <- '../../in/ccm-analyses/cities'
@@ -69,18 +72,20 @@ plot_db <- function(db_filename)
         geom_ribbon(colour='gray', size=0.1) +
         geom_line(size=0.1) +
         geom_vline(xintercept=0, linetype="dotted") +
-        facet_grid(effect ~ cause, margins = FALSE, labeller = label_both) +
+        facet_grid(effect ~ cause, margins = FALSE) +
         labs(
             x = 'lag',
-            y = expression('CCM '* rho)
+            y = expression('cross-map correlation '* rho)
         ) +
         theme(
-            strip.background = element_blank()
-        )
+            strip.background = element_blank(),
+            axis.text = element_text(size = 8)
+        ) +
+        ylim(c(-0.5, 1.0))
     
-    plot_filename <- paste(filename_base, '_plot.pdf', sep='')
-    print(plot_filename)
-    ggsave(plot_filename, p, width=9, height=8)
+    #plot_filename <- paste(filename_base, '_plot.pdf', sep='')
+    ggsave_pdf2svg(filename_base, p, width=5.5, height=5)
+    html2pdf(filename_base)
 }
 
 summarize <- function(db)

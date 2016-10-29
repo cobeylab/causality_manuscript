@@ -31,7 +31,7 @@
 
 - (void)webView:(WebView *)sender didFinishLoadForFrame:(WebFrame *)frame
 {
-    [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(saveAndTerminate) userInfo:nil repeats:NO];
+    [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(saveAndTerminate) userInfo:nil repeats:NO];
 }
 
 - (void)saveAndTerminate
@@ -41,8 +41,18 @@
     WebFrameView * frameView = [[webView mainFrame] frameView];
     NSView<WebDocumentView> * docView = [frameView documentView];
     
-    NSData * pdfData = [docView dataWithPDFInsideRect:[docView frame]];
-    [pdfData writeToFile:[args objectAtIndex:2] atomically:YES];
+    NSString * extension = [[args objectAtIndex:2] pathExtension];
+    if([extension isEqualToString:@"pdf"]) {
+        NSData * pdfData = [docView dataWithPDFInsideRect:[docView frame]];
+        [pdfData writeToFile:[args objectAtIndex:2] atomically:YES];
+    }
+    else if([extension isEqualToString:@"eps"]) {
+        NSData * epsData = [docView dataWithEPSInsideRect:[docView frame]];
+        [epsData writeToFile:[args objectAtIndex:2] atomically:YES];
+    }
+    else {
+        NSLog(@"Unknown file format %@", extension);
+    }
     
     [[NSApplication sharedApplication] terminate:self];
 }

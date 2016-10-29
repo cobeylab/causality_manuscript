@@ -1,20 +1,25 @@
 library(ggplot2)
 
-heatmap_scale_fill <- function(lo=0.0, hi=1.0)
+heatmap_scale_fill <- function()
 {
     scale_fill_gradient(
-        limits=c(lo, hi),
+        limits=c(0.0, 1.0),
         low='#1111ff',
         high='#ff7777'
     )
 }
 
-extract_legend <- function(p)
-{
-    g <- ggplotGrob(p)$grobs
-    g_legend <- g[[which(sapply(g, function(x) x$name) == "guide-box")]]
-    print(length(g_legend))
-    print(g_legend)
-    g_legend
+make_qualitative <- function(vec) {
+    factor(unlist(lapply(
+        vec,
+        function(x) {
+            if(x <= 0.05) {
+                return('L1')
+            }
+            else if(x < 0.95) {
+                return('L2')
+            }
+            return('L3')
+        }
+    )), levels=c('L1', 'L2', 'L3'))
 }
-

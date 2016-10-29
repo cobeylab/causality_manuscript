@@ -1,0 +1,67 @@
+CCM is, in theory, an efficient alternative to mechanistic modeling for causal inference in nonlinear systems.
+By evaluating properties of reconstructed dynamics in state space, it sidesteps any need to formulate and fit what are often inaccurate mathematical models.
+In current practice, CCM appears an unstable basis for inference in natural systems.
+We simulated two interacting strains and found that the original CCM (Criterion 1) can lead to erroneous conclusions whenever strains fluctuated at similar frequencies.
+Applying a different criterion for causality that considers the temporal lag at which the cross-map correlation is maximized \cite{Ye2015}, rather than the change in the cross-map correlation with time series length $L$ \cite{Sugihara2012}, avoids this problem.
+Inference with Criterion 2 is somewhat robust to process noise, which can improve performance in some cases.
+But the method has two problems, even with perfect and abundant observations.
+First, it remains susceptible to deviations from its core dynamical assumptions. 
+``High'' process noise and transient dynamics each diminish performance, leading to false positives and negatives.
+Although some observed systems may follow deterministic dynamics that do not themselves change in time, this assumption is often dubious in ecology.
+Second, even when the dynamical assumptions are upheld, seemingly equally justifiable methods of attractor reconstruction yield different results.
+If the aim is to test hypotheses statistically, these problems raise doubts about the suitability of methods based on state-space reconstruction in ecology.
+
+Oscillations are common in nature, especially in infectious diseases, and suggest that the original criterion (Criterion 1) for causal inference could routinely mislead.
+Climatic and seasonal cycles, driven by such factors as school terms, El Ni{\~{n}}o, and absolute humidity, pervade the dynamics of many pathogens and influence the timing of epidemics \cite{Shaman2010, Laneri2010, Finkenstadt2000, Altizer2006, Metcalf2009}. 
+Infectious diseases can also exhibit fluctuations in the absence of external forcing.
+These fluctuations arise from transient damped oscillations or from noise, which induces fluctuations on characteristic time scales and can interact with seasonal drivers to generate complex patterns \cite{Alonso2006, Nguyen2008, Rand1991, Rohani2002}.
+Consumer-resource interactions \cite{Boland2009, McKane2005, Turchin2003} and patchy populations \cite{Nisbet1978, Durrett1994} demonstrate similar behavior.
+In systems with synchronized dynamics, the only demonstrated reliable criterion for causal inference is a negative cross-map lag \cite{Ye2015}.
+
+Assuming the stronger criterion for causality \cite{Ye2015}, under what conditions might we consider this method ``safe''?
+We have shown that departures from a fixed attractor are a problem.
+These departures constitute different forms of transient dynamics.
+From a modeling perspective, we could describe them as arising from initial conditions, process noise, or a change in the underlying attractor due to a secular change in a parameter.
+In our system, a $\geq5\%$ standard deviation in the transmission rate generated appreciable false positives.
+Is this high or low?
+Although the amount of process noise in a model can be estimated by the variance of the dynamics not explained by the deterministic skeleton, if the true skeleton is unknown, estimates are sensitive to the approximating statistical functions \cite{Ellner1995}.
+More importantly, the existence of transient dynamics in a time series indicates insufficient observations.
+There is furthermore no guarantee any natural system will reach an attractor before going extinct or that the system's dynamics themselves do not evolve \cite{Turchin2003}.
+
+If an ecologist were confident that observed dynamics reflected dynamics near a fixed, deterministic attractor (e.g., in a simple, closed system), uncertainties in the methodology of attractor reconstruction still suggest caution.
+We tested four different methods of selecting the lag-embedding.
+Even near an attractor, they gave different results (Fig.~\ref{fig:detect_diffembed}).
+Decades of research on methods of attractor reconstruction show the continued difficulty of justifying a particular approach \cite{Casdagli1991, Uzal2011, Nichkawde2013, Tajima2015, Sugihara1990}.
+Reconstructions from unknown systems thus currently run the risk of being ad hoc and compromising causal inference.
+The statistics for evaluating cross-map correlations also deserve attention.
+We bootstrapped and attempted to validate approaches empirically with simulated data, but the methods are not rigorously grounded in a probabilistic framework such as those common to mechanistic modeling~\cite{HilbornMangel}.
+Extending the approach to explicitly link nonlinear dynamics with process and observation noise in a probabilistic framework has the potential to put the method on a sounder footing.
+
+Of the many factors that might explain the contrasting results for childhood infections in two cities, biological explanations thus seem the least likely. 
+Although there is evidence that measles increases suceptibility to other pathogens \cite{Mina2015}, and that measles and pertussis compete for susceptible hosts \cite{Rohani2003}, the CCM analyses did not consistently support either hypothesis. 
+It is difficult to imagine a parsimonious mechanism by which the inferred interactions might be plausible.
+Different rates or modes of transmission for each disease in each city might lead to varying patterns of infection in different subpopulations, which would affect interactions.
+We know of no support for this hypothesis.
+In contrast, we cannot rule out transient dynamics, which could arise from changes in birth rates, mobility, and behavior during this period \cite{Earn2000}.
+Process noise, implying the omission of important state variables and poor resolution of the underlying deterministic attractor, could also affect performance. 
+Errors in attractor reconstruction are another possibility. 
+Except for pertussis, different delay-embeddings were selected for each pathogen in each city, and an alternative method of attractor reconstruction yielded even more divergent results. 
+Finally, we cannot account for the effects of short time series and measurement error.
+We conclude that the inferred interactions are untrustworthy.
+
+Detecting causality remains challenging in the face of real data from a complex world.
+With limited data and complex dynamics, mechanistic models are always misspecified to some extent, and the use of other lines of evidence to motivate the choice of model structure is necessary for good inference \cite{BurnhamAnderson, He2009, Yodzis1988, Wood1999, Grad2012}.
+But even an accurate mechanistic model that reproduces observed patterns well cannot prove causality. 
+Controlled manipulative experiments, which are notoriously hard to conduct in large complex systems, are necessary.
+Global systems can never sustain this high standard.  
+Randomization and replication are often possible on lower scales, but inference is complicated by the fact that replicates may not be truly independent \cite{Simberloff1969, Hurlbert1984, Tilman1989}.
+With diseases like the ones we invesigate here, manipulations (e.g., vaccination) are furthermore seldom feasible. 
+This has led epidemiologists and disease ecologists to resort to a mishmash of heuristics, frequently based on observational data, for causal inference \cite{Plowright2008}.
+Prediction, in contrast, is epistemologically straightforward and useful without knowledge of the true underlying structure of a system. 
+It does not require deciding a priori what the best method is (model-based, model-free, or hybrid): the proof is in the prediction.
+Predictive and mechanistic models may converge if the predictive factors are chosen to mimic the hypothesized state variables over time.
+
+Beyond its statistical practicalities, the prospect of applying state-space reconstruction to causal inference touches on unsettled questions in ecology.
+Are systems approximately deterministic and settled on static attractors, and how can we tell?
+Although CCM does not require that dynamics follow an identifiable model, it does require sufficient coverage of a fixed state-space \cite{Hastings2004}.
+We propose that this position is justifiable only in systems that are already well-understood (e.g., closed, non-evolving microcosms at steady state), but in these cases, causality is typically known.

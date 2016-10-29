@@ -1,0 +1,86 @@
+<html>
+
+<head>
+
+<style>
+
+html {
+    zoom: 0.75;
+}
+
+#outer {
+    position: absolute;
+    
+    padding: 0;
+    margin: 0;
+    
+    top: 0;
+    left: 0;
+    
+    width: 6in;
+    height: 5.1in;
+}
+
+#div_plots {
+    position: absolute;
+    
+    padding: 0;
+    margin: 0;
+    
+    top: 0.25in;
+    left: 0.25in;
+}
+
+#div_xlabel {
+    position: absolute;
+    
+    padding: 0;
+    margin: 0;
+    
+    top: 0in;
+    left: 2.75in;
+}
+
+#div_ylabel {
+    padding: 0;
+    margin: 0;
+    
+    transform: rotate(90deg);
+    
+    position: absolute;
+    
+    top: 2.25in;
+    left: 5.25in;
+}
+
+p {
+    text-align: center;
+    font-family: sans-serif;
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+<div id="outer">
+
+<div id="div_plots">
+    <img id="img_plots" src="nyc_cross_projection.svg">
+</div>
+
+<div id="div_xlabel">
+    <p>cause</p>
+</div>
+
+<div id="div_ylabel">
+    <p>effect</p>
+</div>
+
+</div>
+
+</body>
+
+</html>

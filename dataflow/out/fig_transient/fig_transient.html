@@ -4,23 +4,40 @@
 
 <style>
 
+html {
+    zoom: 0.75;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
 .subplot-label {
     font-family: sans-serif;
+}
+
+#img_B {
+    width: 6in;
+}
+
+#img_A {
+    width: 3in;
 }
 
 #main {
     margin: 0;
     padding: 0;
-    width: 540px;
-    height: 180px;
+    width: 6in;
+    height: 4in;
 }
 
 #inset {
     position: absolute;
     margin: 0;
     padding: 0;
-    top: 30px;
-    left: 80px;
+    top: 0.125in;
+    left: 0.75in;
 }
 
 </style>
@@ -31,10 +48,10 @@
 
 <div id="main">
 
-<img src="fig_transient_B.svg">
+<img id="img_B" src="fig_transient_B.svg">
 
 <div id="inset">
-    <img width="270" src="fig_transient_A.svg">
+    <img  id="img_A" src="fig_transient_A.svg">
 </div>
 
 </div>

@@ -4,9 +4,86 @@
 
 <style>
 
-.subplot-label {
+html {
+    zoom: 0.75;
+}
+
+.div_subplot_label {
     font-family: sans-serif;
-    vertical-align: top;
+    padding: 0;
+    margin: 0;
+}
+
+p {
+    padding: 2px;
+    margin: 0;
+}
+
+img {
+    width: 6in;
+}
+
+#A {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+#A_label {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+#B {
+    position: absolute;
+    top: 2.5in;
+    left: 0;
+}
+
+#B_label {
+    position: absolute;
+    top: 2.5in;
+    left: 0;
+}
+
+#C {
+    position: absolute;
+    top: 5in;
+    left: 0;
+}
+
+#C_label {
+    position: absolute;
+    top: 5in;
+    left: 0;
+}
+
+#table_boxlegend {
+    position: absolute;
+    
+    width: 0.75in;
+    
+    border: 0;
+    padding: 0;
+    
+    left: 5.13in;
+    top: 1.95in;
+    
+    font-family: sans-serif;
+    font-size: 10px;
+}
+
+#linetype1 {
+    width: 0.2in;
+    border-style: solid;
+    border-width: 1px;
+}
+
+#linetype2 {
+    width: 0.2in;
+    border-style: dashed;
+    border-width: 1px;
 }
 
 </style>
@@ -15,22 +92,40 @@
 
 <body>
 
-<table>
+<div id="A" class="div_subplot">
+    <img class="img_subplot" src="fig_detect_increase_A.svg">
+</div>
+
+<div id="A_label" class="div_subplot_label">
+    <p>A</p>
+</div>
+
+<div id="B" class="div_subplot">
+    <img class="img_subplot" src="fig_detect_increase_B.svg">
+</div>
+
+<div id="B_label" class="div_subplot_label">
+    <p>B</p>
+</div>
+
+<div id="C" class="div_subplot">
+    <img class="img_subplot" src="fig_detect_increase_C.svg">
+</div>
+
+<div id="C_label" class="div_subplot_label">
+    <p>C</p>
+</div>
+
+<!--table id="table_boxlegend">
     <tr>
-        <td class="subplot-label">A</td>
-        <td><img src="fig_detect_increase_A.svg"></td>
+        <td id="linetype1">&nbsp;</td>
+        <td>&nbsp; &leq; 0.05</td>
     </tr>
-    
     <tr>
-        <td class="subplot-label">B</td>
-        <td><img src="fig_detect_increase_B.svg"></td>
+        <td id="linetype2">&nbsp;</td>
+        <td>&nbsp; &geq; 0.95</td>
     </tr>
-    
-    <tr>
-        <td class="subplot-label">C</td>
-        <td><img src="fig_detect_increase_C.svg"></td>
-    </tr>
-</table>
+</table-->
 
 </body>
 

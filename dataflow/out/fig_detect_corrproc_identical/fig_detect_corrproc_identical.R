@@ -33,21 +33,21 @@ main <- function()
         'frac_positive_monthly.pdf',
         'frac_neg_rhopos_and_best'
     )
-    ggsave_pdf2svg('fig_detect_corrproc_identical_A', pA, width=5, height=2)
+    ggsave_pdf2svg('fig_detect_corrproc_identical_A', pA, width=4, height=2)
     
     pB <- process_data(
         '../../in/ccm-analyses/1000y-annual-incidence-untransformed-corrproc/identical',
         'frac_positive_annual.pdf',
         'frac_neg_rhopos_and_best'
     )
-    ggsave_pdf2svg('fig_detect_corrproc_identical_B', pB, width=5, height=2)
+    ggsave_pdf2svg('fig_detect_corrproc_identical_B', pB, width=4, height=2)
     
     pC <- process_data(
         '../../in/ccm-analyses/100y-monthly-incidence-untransformed-corrproc/identical',
         'frac_increase_monthly.pdf',
         'frac_neg_rhoinc_and_best'
     )
-    ggsave_pdf2svg('fig_detect_corrproc_identical_C', pC, width=5, height=2)
+    ggsave_pdf2svg('fig_detect_corrproc_identical_C', pC, width=4, height=2)
     
     html2pdf('fig_detect_corrproc_identical')
     
@@ -59,20 +59,30 @@ main <- function()
 process_data <- function(data_dir, plot_filename, test_name)
 {
     ccm_summ <- load_ccm_summary_lagtest(data_dir)
+    ccm_summ$qualitative <- make_qualitative(ccm_summ[,test_name])
+    test_str_name <- sprintf('%s_str', test_name)
+    ccm_summ[,test_str_name] <- sapply(ccm_summ[,test_name], function(x) { sprintf('%.2f', x) } )
     
-    effect_labeller <- function(variable, value) {
-        ifelse(
-            value == 'C0',
-            expression(paste(italic(C)[2], ' drives ', italic(C)[1])),
-            expression(paste(italic(C)[1], ' drives ', italic(C)[2]))
+    effect_labeller <- function(df) {
+        result <- list()
+        
+        result[[1]] <- lapply(df$effect, function(x) {
+                if(x == 'C1') {
+                    return(expression(italic(C)[1] * ' causes ' * italic(C)[2]))
+                }
+                return(expression(italic(C)[2] * ' causes ' * italic(C)[1]))
+            }
         )
+        
+        return(result)
     }
     
     ggplot(
         data = ccm_summ,
         aes(x = factor(sd_proc), y = factor(corr_proc))
     ) +
-        geom_tile(aes_string(fill = test_name)) +
+        geom_tile(aes_string(fill = test_name, linetype='qualitative', colour='qualitative', size='qualitative')) +
+        geom_text(colour = 'lightgray', size=3, aes_string(label = test_str_name)) +
         facet_grid(. ~ effect, labeller=effect_labeller) +
         labs(
             x = expression(paste('s.d. process noise (', italic(eta), ')')),
@@ -80,10 +90,15 @@ process_data <- function(data_dir, plot_filename, test_name)
             fill = 'causal fraction'
         ) +
         heatmap_scale_fill() +
+        scale_linetype_manual('', values=c(L1=1, L2=0, L3=2), guide=FALSE) +
+        scale_colour_manual('', values=c(L1='black', L2=NA, L3='black'), guide=FALSE) +
+        scale_size_manual('', values=c(L1=0.25, L2=0.0, L3=0.25), guide=FALSE) +
         theme_classic() +
         theme(
             strip.background = element_blank(),
-            legend.title = element_blank()
+            legend.title = element_blank(),
+            panel.margin = unit(0.1, 'in'),
+            plot.margin = unit(c(0, 0, 0, 0.3), 'in')
         )
 }
 

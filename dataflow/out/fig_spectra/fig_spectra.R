@@ -44,17 +44,44 @@ main <- function()
         (combined_data$cause == 'C0'),
     ]
     p <- ggplot(data = subdata, aes(x = xsdens_max, y = pvalue_increase, colour = factor(sd_proc), size = factor(sigma01))) +
-        geom_point() +
+        geom_point(alpha = 0.5, stroke = 0) +
         scale_size_discrete(range=c(1.0, 4.0)) +
         scale_colour_manual(values=c('#c7e9b4', '#7fcdbb', '#41b6c4', '#2c7fb8', '#253494')) +
         labs(
             x = 'maximum cross-spectral density',
             y = 'p-value for interaction',
-            colour = expression(sigma[12]),
-            size = expression(eta)
+            colour = expression(eta),
+            size = expression(sigma[12])
         ) +
         theme_classic()
-    ggsave(p, filename='fig_spectra.pdf', width=6, height=4)
+    ggsave(p, filename='fig_spectra.pdf', width=6, height=3.5)
+    
+    
+    p <- ggplot(data = subdata, aes(x = xcorr_max, y = pvalue_increase, colour = factor(sd_proc), size = factor(sigma01))) +
+        geom_point(alpha = 0.5, stroke = 0) +
+        scale_size_discrete(range=c(1.0, 4.0)) +
+        scale_colour_manual(values=c('#c7e9b4', '#7fcdbb', '#41b6c4', '#2c7fb8', '#253494')) +
+        labs(
+            x = 'maximum cross-correlation',
+            y = 'p-value for interaction',
+            colour = expression(eta),
+            size = expression(sigma[12])
+        ) +
+        theme_classic()
+    ggsave(p, filename='fig_spectra_xcorr_max.pdf', width=6, height=3.5)
+    
+    p <- ggplot(data = subdata, aes(x = xcorr_argmax, y = pvalue_increase, colour = factor(sd_proc), size = factor(sigma01))) +
+        geom_point(alpha = 0.5, stroke = 0) +
+        scale_size_discrete(range=c(1.0, 4.0)) +
+        scale_colour_manual(values=c('#c7e9b4', '#7fcdbb', '#41b6c4', '#2c7fb8', '#253494')) +
+        labs(
+            x = 'index of maximum cross-correlation',
+            y = 'p-value for interaction',
+            colour = expression(eta),
+            size = expression(sigma[12])
+        ) +
+        theme_classic()
+    ggsave(p, filename='fig_spectra_xcorr_argmax.pdf', width=6, height=3.5)
     
     xsdens_increase_cortest <- cor.test(subdata$xsdens_max, subdata$pvalue_increase)
     

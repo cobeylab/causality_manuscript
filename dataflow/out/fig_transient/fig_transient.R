@@ -34,10 +34,10 @@ main <- function()
     input_dir <- '../../in/ccm-analyses/transient'
     
     ts_plot <- plot_timeseries(input_dir)
-    ggsave_pdf2svg('fig_transient_A', ts_plot, width=6, height=4)
+    ggsave_pdf2svg('fig_transient_A', ts_plot, width=3, height=2)
     
     lagplot <- plot_ccm_bylag(input_dir)
-    ggsave_pdf2svg('fig_transient_B', lagplot, width=6, height=6)
+    ggsave_pdf2svg('fig_transient_B', lagplot, width=6, height=5)
     
     html2pdf('fig_transient')
     
@@ -48,12 +48,12 @@ plot_timeseries <- function(input_dir)
 {
     ts_mat <- load_json_matrix(file.path(input_dir, 'single-run', 'timeseries.json'))
     
-    ts_df_C0 <- data.frame(t = 1:nrow(ts_mat), incidence = ts_mat[,1], variable = 'C0')
-    ts_df_C1 <- data.frame(t = 1:nrow(ts_mat), incidence = ts_mat[,2], variable = 'C1')
+    ts_df_C0 <- data.frame(t = (0:(nrow(ts_mat) - 1))/36, incidence = ts_mat[,1], variable = 'C0')
+    ts_df_C1 <- data.frame(t = (0:(nrow(ts_mat) - 1))/36, incidence = ts_mat[,2], variable = 'C1')
     
     ts_df <- rbind(ts_df_C0, ts_df_C1)
     
-    ggplot(data = ts_df, aes(x = t/12, y = incidence, colour = variable, linetype = variable)) +
+    ggplot(data = ts_df, aes(x = t, y = incidence, colour = variable, linetype = variable)) +
         geom_line(aes(colour = variable)) +
         scale_colour_discrete(name = 'variable', labels = c(expression(italic(C)[1]), expression(italic(C)[2]))) +
         scale_linetype_discrete(name = 'variable', labels = c(expression(italic(C)[1]), expression(italic(C)[2]))) +
@@ -65,7 +65,9 @@ plot_timeseries <- function(input_dir)
         theme(
             legend.title=element_blank(),
             legend.position=c(0.9,0.5),
-            plot.background = element_blank()
+            plot.background = element_blank(),
+            panel.background = element_blank(),
+            legend.background = element_blank()
         )
 }
 
@@ -79,7 +81,7 @@ plot_ccm_bylag <- function(input_dir)
     data_both <- rbind(data_01, data_10)
     
     ggplot(data = data_both, aes(x = delay, ymin = q2_5, ymax = q97_5, y = q50, colour = cause, linetype = cause)) +
-        geom_ribbon(linetype = 0, fill = '#dddddd', show_guide=FALSE) +
+        geom_ribbon(linetype = 0, fill = '#dddddd', show.legend=FALSE) +
         geom_line() +
         scale_y_continuous(limits=c(-0.25, 1)) +
         scale_colour_discrete(
@@ -97,7 +99,7 @@ plot_ccm_bylag <- function(input_dir)
             )
         ) +
         labs(
-            x = expression('cross-map delay'),
+            x = expression('cross-map lag'),
             y = expression('cross-map correlation ' * rho)
         ) +
         theme_classic() +

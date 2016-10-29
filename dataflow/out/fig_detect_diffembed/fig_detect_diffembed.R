@@ -57,24 +57,33 @@ main <- function()
 process_data <- function(data_dir, plot_filename, var0_name, seasonal, identical)
 {
     ccm_summ <- load_ccm_summary(data_dir)
+    ccm_summ$qualitative <- make_qualitative(ccm_summ$increase_fraction)
+    ccm_summ$increase_fraction_str <- sapply(ccm_summ$increase_fraction, function(x) { sprintf('%.2f', x) })
     
     summ_seas_diff <- ccm_summ[
         ccm_summ$seasonal == seasonal & ccm_summ$identical == identical,
     ]
     
-    effect_labeller <- function(variable, value) {
-        ifelse(
-            value == var0_name,
-            expression(paste(italic(C)[2], ' drives ', italic(C)[1])),
-            expression(paste(italic(C)[1], ' drives ', italic(C)[2]))
+    effect_labeller <- function(df) {
+        result <- list()
+        
+        result[[1]] <- lapply(df$effect, function(x) {
+                if(x == 'C1') {
+                    return(expression(italic(C)[1] * ' causes ' * italic(C)[2]))
+                }
+                return(expression(italic(C)[2] * ' causes ' * italic(C)[1]))
+            }
         )
+        
+        return(result)
     }
     
     ggplot(
         data = summ_seas_diff,
         aes(x = factor(sd_proc), y = factor(sigma01))
     ) +
-        geom_tile(aes(fill = increase_fraction)) +
+        geom_tile(aes(fill = increase_fraction, linetype=qualitative, colour=qualitative, size=qualitative)) +
+        geom_text(colour = 'lightgray', size=3, aes(label = increase_fraction_str)) +
         facet_grid(. ~ effect, labeller=effect_labeller) +
         labs(
             x = expression(paste('s.d. process noise (', italic(eta), ')')),
@@ -85,9 +94,14 @@ process_data <- function(data_dir, plot_filename, var0_name, seasonal, identical
         theme(
             strip.background = element_blank(),
             legend.title = element_blank(),
-            axis.text = element_text(size = 8)
+            axis.text = element_text(size = 8),
+            panel.margin = unit(0, 'in'),
+            plot.margin = unit(c(0, 0, 0, 0.25), 'in')
         ) +
-        heatmap_scale_fill()
+        heatmap_scale_fill() +
+        scale_linetype_manual('', values=c(L1=1, L2=0, L3=2), guide=FALSE) +
+        scale_colour_manual('', values=c(L1='black', L2=NA, L3='black'), guide=FALSE) +
+        scale_size_manual('', values=c(L1=0.25, L2=0.0, L3=0.25), guide=FALSE)
 }
 
 main()

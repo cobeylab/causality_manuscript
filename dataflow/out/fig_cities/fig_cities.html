@@ -4,9 +4,99 @@
 
 <style>
 
-.subplot-label {
-    vertical-align: top;
+html {
+    zoom: 0.75;
+}
+
+.subplot_label {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.subplot {
+    position: absolute;
+    padding: 0;
+    margin: 0;
+}
+
+p {
+    padding: 3px;
+    margin: 0;
     font-family: sans-serif;
+}
+
+#A {
+    top: 0;
+    left: 0;
+    clip: rect(0in, 4.7in, 2.5in, 0in);
+}
+
+#img_A {
+    width: 6in;
+    height: 2.5in;
+}
+
+#img_B {
+    width: 6in;
+    height: 2.5in;
+}
+
+#img_AB_legend {
+    width: 6in;
+    height: 2.5in;
+}
+
+#img_C {
+    width: 2.5in;
+    height: 2.5in;
+}
+
+#img_D {
+    width: 2.5in;
+    height: 2.5in;
+}
+
+#img_CD_legend {
+    width: 2.5in;
+    height: 2.5in;
+}
+
+#B {
+    top: 2.5in;
+    left: 0;
+    clip: rect(0in, 4.7in, 2.5in, 0in);
+}
+
+#AB_legend {
+    top: 1.25in;
+    left: 0;
+    clip: rect(0in, 6in, 2.5in, 4.8in);
+}
+
+#C {
+    top: 5.2in;
+    left: 0.25in;
+    clip: rect(0in, 2.5in, 2.2in, 0in);
+}
+
+#D {
+    top: 5.2in;
+    left: 3.25in;
+    clip: rect(0in, 2.5in, 2.2in, 0in);
+}
+
+#CD_legend {
+    top: 4.8in;
+    left: 1.75in;
+    clip: rect(2.2in, 2.5in, 2.5in, 0in);
+}
+
+img {
+    top: 0;
+    left: 0;
+    padding: 0;
+    margin: 0;
 }
 
 </style>
@@ -15,30 +105,45 @@
 
 <body>
 
-<table>
+<div class="subplot" id="A">
+    <img id="img_A" src="fig_cities_A.svg">
+    
+    <div class="subplot_label">
+        <p>A</p>
+    </div>
+</div>
 
-<tr>
-    <td class="subplot-label">A</td>
-    <td colspan="3"><img src="fig_cities_A.svg"></td>
-</tr>
+<div class="subplot" id="B">
+    <img id="img_B" src="fig_cities_B.svg">
+    
+    <div class="subplot_label">
+        <p>B</p>
+    </div>
+</div>
 
-<tr>
-    <td class="subplot-label">B</td>
-    <td colspan="3"><img src="fig_cities_B.svg"></td>
-</tr>
+<div class="subplot" id="AB_legend">
+    <img id="img_AB_legend" src="fig_cities_A.svg">
+</div>
 
-<tr>
-    <td colspan="4">&nbsp;</td>
-</tr>
+<div class="subplot" id="C">
+    <img id="img_C" src="fig_cities_C.svg">
+    
+    <div class="subplot_label">
+        <p>C</p>
+    </div>
+</div>
 
-<tr>
-    <td class="subplot-label">C</td>
-    <td colspan="1"><img src="fig_cities_C.svg"></td>
-    <td class="subplot-label">D</td>
-    <td colspan="1"><img src="fig_cities_D.svg"></td>
-</tr>
+<div class="subplot" id="D">
+    <img id="img_D" src="fig_cities_D.svg">
+    
+    <div class="subplot_label">
+        <p>D</p>
+    </div>
+</div>
 
-<table>
+<div class="subplot" id="CD_legend">
+    <img id="img_CD_legend" src="fig_cities_C.svg">
+</div>
 
 <body>
 

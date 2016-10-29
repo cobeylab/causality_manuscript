@@ -1,0 +1,101 @@
+<html>
+
+<head>
+
+<style>
+
+html {
+    zoom: 0.75;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.subplot-label {
+    font-family: sans-serif;
+}
+
+.div_ts {
+    position: absolute;
+    left: 0;
+    
+    padding: 0;
+    width: 6in;
+    height: 2in;
+}
+
+#img_legend {
+    position: absolute;
+    top: 0;
+    left: 0;
+    clip: rect(0in, 4in, 0.5in, 2.5in);
+}
+
+img.img_ts {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 6in;
+    height: 2in;
+}
+
+#start {
+    top: 0;
+}
+
+#mid {
+    top: 4in;
+}
+
+#end {
+    top: 2in;
+}
+
+p {
+    padding: 3px;
+    margin: 0;
+    font-family: sans-serif;
+}
+
+.subplot_label {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="div_ts" id="start">
+    <img class="img_ts" src="ts_start.svg">
+    <img class="img_ts" id="img_legend" src="ts_for_legend.svg">
+    
+    <div class="subplot_label">
+        <p>A</p>
+    </div>
+</div>
+
+<div class="div_ts" id="end">
+    <img class="img_ts" src="ts_end.svg">
+    
+    <div class="subplot_label">
+        <p>B</p>
+    </div>
+</div>
+
+<div class="div_ts" id="mid">
+    <img class="img_ts" src="ts_mid.svg">
+    
+    <div class="subplot_label">
+        <p>C</p>
+    </div>
+</div>
+
+</body>
+
+</html>

@@ -4,9 +4,141 @@
 
 <style>
 
-.subplot-label {
-    vertical-align: top;
+html {
+    zoom: 0.75;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.div_subplot {
+    position: absolute;
+    overflow: hidden;
+    
+    margin: 0;
+    padding: 0;
+    
+    width: 6in;
+    height: 1.5in;
+}
+
+.div_subplot_label {
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    
+    top: 0;
+    left: 0;
+}
+
+p {
+    margin: 0;
+    padding: 2px;
     font-family: sans-serif;
+}
+
+#div_A {
+    top: 0.25in;
+    left: 0;
+}
+
+#div_B {
+    top: 1.75in;
+    left: 0;
+}
+
+#div_C {
+    top: 3.25in;
+    left: 0;
+}
+
+#div_D {
+    top: 4.75in;
+    left: 0;
+}
+
+#div_title {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+#img_title {
+    position: absolute;
+    
+    top: 0.02in;
+    width: 6in;
+    height: 2in;
+    clip: rect(0in, 5in, 0.5in, 0.5in);
+}
+
+#div_ylabel {
+    position: absolute;
+    top: 2.25in;
+    left: 0;
+}
+
+#img_ylabel {
+    position: absolute;
+    
+    width: 6in;
+    height: 2in;
+    clip: rect(0in, 6in, 2in, 0in);
+}
+
+#div_xlabel {
+    position: absolute;
+    top: 4.5in;
+    left: 0;
+}
+
+#img_xlabel {
+    position: absolute;
+    
+    width: 6in;
+    height: 2in;
+    clip: rect(1.75in, 6in, 2in, 0in);
+}
+
+.img_subplot {
+    position: absolute;
+    
+    top: -0.25in;
+    left: 0;
+    
+    width: 6in;
+    height: 2in;
+    
+    clip: rect(0in, 5.1in, 1.8in, 0.5in);
+}
+
+#table_boxlegend {
+    position: absolute;
+    
+    width: 0.75in;
+    
+    border: 0;
+    padding: 0;
+    
+    left: 5.2in;
+    top: 3.9in;
+    
+    font-family: sans-serif;
+    font-size: 10px;
+}
+
+#linetype1 {
+    width: 0.2in;
+    border-style: solid;
+    border-width: 1px;
+}
+
+#linetype2 {
+    width: 0.2in;
+    border-style: dashed;
+    border-width: 1px;
 }
 
 </style>
@@ -17,27 +149,48 @@
 
 <table>
 
-<tr>
-    <td class="subplot-label">A</td>
-    <td><img src="fig_detect_diffdata_A.svg"></td>
-</tr>
+<div id="div_title">
+    <img id="img_title" src="fig_detect_diffdata_A.svg">
+</div>
 
-<tr>
-    <td class="subplot-label">B</td>
-    <td><img src="fig_detect_diffdata_B.svg"></td>
-</tr>
+<div id="div_ylabel">
+    <img id="img_ylabel" src="fig_detect_diffdata_A.svg">
+</div>
 
-<tr>
-    <td class="subplot-label">C</td>
-    <td><img src="fig_detect_diffdata_C.svg"></td>
-</tr>
+<div id="div_xlabel">
+    <img id="img_xlabel" src="fig_detect_diffdata_A.svg">
+</div>
 
-<tr>
-    <td class="subplot-label">D</td>
-    <td><img src="fig_detect_diffdata_D.svg"></td>
-</tr>
+<div class="div_subplot" id="div_A">
+    <img class="img_subplot" src="fig_detect_diffdata_A.svg">
+    <div class="div_subplot_label"><p>A</p></div>
+</div>
 
-<table>
+<div class="div_subplot" id="div_B">
+    <img class="img_subplot" src="fig_detect_diffdata_B.svg">
+    <div class="div_subplot_label"><p>B</p></div>
+</div>
+
+<div class="div_subplot" id="div_C">
+    <img class="img_subplot" src="fig_detect_diffdata_C.svg">
+    <div class="div_subplot_label"><p>C</p></div>
+</div>
+
+<div class="div_subplot" id="div_D">
+    <img class="img_subplot" src="fig_detect_diffdata_D.svg">
+    <div class="div_subplot_label"><p>D</p></div>
+</div>
+
+<!--table id="table_boxlegend">
+    <tr>
+        <td id="linetype1">&nbsp;</td>
+        <td>&nbsp; &leq; 0.05</td>
+    </tr>
+    <tr>
+        <td id="linetype2">&nbsp;</td>
+        <td>&nbsp; &geq; 0.95</td>
+    </tr>
+</table-->
 
 </body>
 
