@@ -1,0 +1,139 @@
+<html>
+
+<head>
+
+<style>
+
+html {
+    zoom: 0.75;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.div_subplot {
+    position: absolute;
+    overflow: hidden;
+    
+    margin: 0;
+    padding: 0;
+    
+    width: 6in;
+    height: 1.7in;
+}
+
+.div_subplot_label {
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    
+    top: 0;
+    left: 0;
+}
+
+p {
+    margin: 0;
+    padding: 2px;
+    font-family: sans-serif;
+}
+
+#div_A {
+    top: 0.3in;
+    left: 0;
+}
+
+#div_B {
+    top: 1.65in;
+    left: 0;
+}
+
+#div_title {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+#img_title {
+    position: absolute;
+    
+    top: 0.02in;
+    width: 6in;
+    height: 2in;
+    clip: rect(0in, 5in, 0.3in, 0.6in);
+}
+
+#div_ylabel {
+    position: absolute;
+    top: 0.7in;
+    left: 0;
+}
+
+#img_ylabel {
+    position: absolute;
+    
+    width: 6in;
+    height: 2in;
+    clip: rect(0in, 6in, 2in, 0in);
+}
+
+#div_xlabel {
+    position: absolute;
+    top: 1.25in;
+    left: 0;
+}
+
+#img_xlabel {
+    position: absolute;
+    
+    width: 6in;
+    height: 2in;
+    clip: rect(1.75in, 6in, 2in, 0in);
+}
+
+.img_subplot {
+    position: absolute;
+    
+    top: -0.28in;
+    left: 0;
+    
+    width: 6in;
+    height: 2in;
+    
+    clip: rect(0in, 5.25in, 1.65in, 0.6in);
+}
+
+</style>
+
+</head>
+
+<body>
+
+<table>
+
+<div id="div_title">
+    <img id="img_title" src="fig_surrogates_useeffect=0.svg">
+</div>
+
+<div id="div_ylabel">
+    <img id="img_ylabel" src="fig_surrogates_useeffect=0.svg">
+</div>
+
+<div id="div_xlabel">
+    <img id="img_xlabel" src="fig_surrogates_useeffect=0.svg">
+</div>
+
+<div class="div_subplot" id="div_A">
+    <img class="img_subplot" src="fig_surrogates_useeffect=1.svg">
+    <div class="div_subplot_label"><p>A</p></div>
+</div>
+
+<div class="div_subplot" id="div_B">
+    <img class="img_subplot" src="fig_surrogates_useeffect=0.svg">
+    <div class="div_subplot_label"><p>B</p></div>
+</div>
+
+</body>
+
+</html>
